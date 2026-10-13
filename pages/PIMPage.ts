@@ -1,5 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 import { BasePage } from './BasePage';
+import { ConfirmModal } from './components/ConfirmModal';
 
 export class PIMPage extends BasePage {
   readonly heading: Locator;
@@ -7,6 +8,7 @@ export class PIMPage extends BasePage {
   readonly searchButton: Locator;
   readonly addButton: Locator;
   readonly employeeTable: Locator;
+  readonly confirmModal: ConfirmModal;
 
   constructor(page: Page) {
     super(page);
@@ -15,6 +17,7 @@ export class PIMPage extends BasePage {
     this.searchButton = page.getByRole('button', { name: 'Search' });
     this.addButton = page.getByRole('button', { name: 'Add' });
     this.employeeTable = page.locator('.oxd-table');
+    this.confirmModal = new ConfirmModal(page);
   }
 
   async searchEmployee(name: string) {
@@ -28,5 +31,14 @@ export class PIMPage extends BasePage {
 
   async isEmployeeVisible(name: string) {
     return await this.employeeTable.getByText(name).isVisible();
+  }
+
+  async deleteEmployee(name: string) {
+    await this.employeeTable
+      .locator('.oxd-table-row')
+      .filter({ hasText: name })
+      .locator('.oxd-icon.bi-trash')
+      .click();
+    await this.confirmModal.confirm();
   }
 }

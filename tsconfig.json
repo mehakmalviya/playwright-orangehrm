@@ -4,6 +4,17 @@
 		"module": "commonjs",
 		"strict": true,
 		"esModuleInterop": true,
-		"types": ["node"]
+		"types": ["node"],
+		"baseUrl": ".",
+		"ignoreDeprecations": "6.0",
+		"paths": {
+			"@pages/*": ["pages/*"],
+			"@components/*": ["pages/components/*"],
+			"@utils/*": ["utils/*"],
+			"@builders/*": ["utils/builders/*"],
+			"@fixtures": ["fixtures/index"],
+			"@config": ["config/env"],
+			"@test-data/*": ["test-data/*"]
+		}
 	}
 }

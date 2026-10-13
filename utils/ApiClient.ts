@@ -1,13 +1,14 @@
 import { APIRequestContext } from '@playwright/test';
 import { Employee } from './builders/EmployeeBuilder';
+import env from '../config/env';
 
 export class ApiClient {
-  private baseURL = 'https://opensource-demo.orangehrmlive.com';
+  private baseURL = env.baseURL;
   private token = '';
 
   constructor(private request: APIRequestContext) {}
 
-  async login(username = 'Admin', password = 'admin123') {
+  async login(username = env.username, password = env.password) {
     const res = await this.request.post(`${this.baseURL}/web/index.php/api/v2/auth/login`, {
       data: { username, password },
     });

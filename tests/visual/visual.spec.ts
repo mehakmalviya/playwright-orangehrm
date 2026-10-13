@@ -1,4 +1,5 @@
-import { test, expect } from '../../fixtures';
+import { test, expect } from '@fixtures';
+import env from '@config';
 
 test.describe('Visual regression @visual', () => {
   test('dashboard should match baseline', async ({ page }) => {
@@ -12,7 +13,7 @@ test.describe('Visual regression @visual', () => {
   });
 
   test('login page should match baseline', async ({ page }) => {
-    await page.goto('https://opensource-demo.orangehrmlive.com');
+    await page.goto(env.baseURL);
     await page.waitForLoadState('networkidle');
 
     await expect(page).toHaveScreenshot('login.png', {

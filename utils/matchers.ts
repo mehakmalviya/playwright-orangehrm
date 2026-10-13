@@ -21,3 +21,14 @@ expect.extend({
     }
   },
 });
+
+declare global {
+  namespace PlaywrightTest {
+    interface Matchers<R> {
+      toHaveToastMessage(expectedText: string): Promise<R>;
+      toBeVisibleWithText(expectedText: string): Promise<R>;
+    }
+  }
+}
+
+export {};
