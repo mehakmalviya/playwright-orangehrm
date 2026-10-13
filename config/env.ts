@@ -20,4 +20,9 @@ const config = {
 
 const env = (process.env.ENV || 'dev') as Environment;
 
-export default config[env];
+export default {
+	...config[env],
+	username: process.env.ORANGEHRM_USER || config[env].username,
+	password: process.env.ORANGEHRM_PASSWORD || config[env].password,
+	baseURL: process.env.ORANGEHRM_BASE_URL || config[env].baseURL,
+};

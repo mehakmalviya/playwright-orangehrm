@@ -1,4 +1,4 @@
-import { test, expect } from '../../fixtures';
+import { test, expect } from '@fixtures';
 
 test.describe('Mock API @mock', () => {
   test('should display mocked employee data', async ({ authenticatedPage }) => {
