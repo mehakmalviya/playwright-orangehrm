@@ -22,7 +22,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   reporter: process.env.CI
-    ? [['list'], ['junit', { outputFile: 'results/junit-report.xml' }], ['html', { open: 'never' }]]
+    ? [['list'], ['junit', { outputFile: 'results/junit-report.xml' }], ['blob']]
     : [['html', { open: 'on-failure' }], ['./reporters/ConsoleReporter.ts']],
 
   use: {
